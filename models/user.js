@@ -2,44 +2,47 @@ const mongoose = require('mongoose')
 const crypto = require('crypto')
 const uuidv5 = require('uuid/v5')
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 32,
-    trim: true,
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      maxlength: 32,
+      trim: true,
+    },
+    last_name: {
+      type: String,
+      maxlength: 32,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+    },
+    user_info: {
+      type: String,
+      trim: true,
+    },
+    // TODO: CoMe BaCk here this is critical
+    enc_password: {
+      type: String,
+      required: true,
+    },
+    // ! SALT is very important 😁
+    salt: String,
+    role: {
+      type: Number,
+      default: 0,
+    },
+    purchases: {
+      type: Array,
+      default: [],
+    },
   },
-  last_name: {
-    type: String,
-    maxlength: 32,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
-  },
-  user_info: {
-    type: String,
-    trim: true,
-  },
-  // TODO: CoMe BaCk here this is critical
-  enc_password: {
-    type: String,
-    required: true,
-  },
-  // ! SALT is very important 😁
-  salt: String,
-  role: {
-    type: Number,
-    default: 0,
-  },
-  purchases: {
-    type: Array,
-    default: [],
-  },
-})
+  { timestamps: true }
+)
 
 // ? Virutuals for schema
 userSchema
