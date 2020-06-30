@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
-const { ObjectID } = mongoose.Schema
+const { ObjectId } = mongoose.Schema
 
 const productCartSchema = new mongoose.Schema({
   product: {
-    type: ObjectID,
+    type: ObjectId,
     ref: 'Product',
   },
   name: String,
@@ -11,7 +11,7 @@ const productCartSchema = new mongoose.Schema({
   price: Number,
 })
 
-const ProductCart = mongoose.model('ProductCart', ProductCartSchema)
+const ProductCart = mongoose.model('productCart', productCartSchema)
 
 const orderSchema = new mongoose.Schema(
   {
@@ -21,14 +21,14 @@ const orderSchema = new mongoose.Schema(
     address: { type: String },
     updated: Date,
     user: {
-      type: ObjectID,
+      type: ObjectId,
       ref: 'User',
     },
   },
   { timestamps: true }
 )
 
-const Order = module.exports('Order', orderSchema)
+const Order = mongoose.model('order', orderSchema)
 
 module.exports = {
   Order,

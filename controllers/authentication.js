@@ -73,7 +73,9 @@ exports.signin = (req, res) => {
     }
 
     // generating auth_token for the user
-    const auth_token = jwt.sign({ _id: user._id }, process.env.SECRET)
+    const auth_token = jwt.sign({ _id: user._id }, process.env.SECRET, {
+      expiresIn: 3000,
+    })
     res.cookie('auth-token', auth_token, { expire: new Date() + 9999 })
     return res.status(200).json({
       auth_token,
@@ -96,7 +98,7 @@ exports.isSignedIn = expressJwt({
 
 // custom middlewares
 exports.isAuthenticated = (req, res, next) => {
-  let checker = req.profile && req.auth && req.profle._id == req.auth._id
+  let checker = req.profile && req.auth && req.profile._id == req.auth._id
   if (!checker) {
     return res.status(403).json({ error: 'ACCESS DENIED' })
   }

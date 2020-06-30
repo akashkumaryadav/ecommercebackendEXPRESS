@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 // * Router routes
-const authentication = require('./routes/authentication')
+const authenticationRoute = require('./routes/authentication')
+const userRoute = require('./routes/user')
 
 // * connecting to the database
 mongoose
@@ -38,7 +39,8 @@ APP.get('/', (req, res) => {
 })
 
 // * Router Routes
-APP.use('/api', authentication)
+APP.use('/api', authenticationRoute)
+APP.use('/api', userRoute)
 
 // * listening on PORT
 APP.listen(PORT, (res, err) =>
