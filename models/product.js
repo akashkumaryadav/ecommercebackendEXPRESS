@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { ObjectID } = mongoose.Schema
+const { ObjectId } = mongoose.Schema
 
 const productSchema = new mongoose.Schema(
   {
@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema(
       maxlength: 42,
     },
     category: {
-      type: ObjectID,
+      type: ObjectId,
       required: true,
       ref: 'Category',
     },
@@ -34,11 +34,13 @@ const productSchema = new mongoose.Schema(
       default: 0,
     },
     photo: {
-      type: Buffer,
+      data: Buffer,
       contentType: String,
     },
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Product', productSchema)
+const Product = mongoose.model('product', productSchema)
+
+module.exports = Product
