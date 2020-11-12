@@ -5,7 +5,6 @@ const category = require('../models/category')
 exports.createCategory = (req, res) => {
   const category = new Category(req.body)
   category.save((err, category) => {
-    console.log(err)
     if (err || !category) {
       return res.status(401).json({ error: 'unable to create the category' })
     }

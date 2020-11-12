@@ -7,12 +7,16 @@ const fs = require('fs')
  */
 exports.createProduct = (req, res) => {
   let form = new formidable.IncomingForm()
+  console.log(form)
   form.keepExtensions = true
   form.parse(req, (err, fields, file) => {
     if (err) {
       return res.status(400).json({ error: 'Unable to upload photo' })
     }
+    console.log(fields, file)
+
     let product = new Product(fields)
+
     if (file.photo) {
       if (file.photo.size > 3000000) {
         return res.status(400).json({ error: 'File size is too big' })

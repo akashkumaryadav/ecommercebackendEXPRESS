@@ -44,7 +44,7 @@ router.post(
 )
 
 // testing protected controllers
-router.get('/testroute', [isSignedIn], (req, res) => {
+router.get('/testroute', isSignedIn, (req, res) => {
   res.send('protected route')
 })
 

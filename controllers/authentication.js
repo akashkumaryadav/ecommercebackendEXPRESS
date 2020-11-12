@@ -4,7 +4,8 @@ const expressJwt = require('express-jwt')
 const User = require('../models/user')
 
 /** utitlity function to pull errors from the validation Result
- * @param Result.errors */
+ * @param Result.errors
+ * */
 
 const { pullArrayOfErrors } = require('../utils/pullerror.js')
 
