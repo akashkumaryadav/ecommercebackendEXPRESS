@@ -11,6 +11,7 @@ const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
 const productRoutes = require('./routes/product')
 const orderRoutes = require('./routes/order')
+const paymentRoute = require('./routes/payment')
 
 // * connecting to the database
 connect()
@@ -30,6 +31,7 @@ APP.use('/api', userRoutes)
 APP.use('/api', categoryRoutes)
 APP.use('/api', productRoutes)
 APP.use('/api', orderRoutes)
+APP.use('/api', paymentRoute)
 // * Routes
 APP.get('/', (req, res) => {
   return res.json({

@@ -4,12 +4,13 @@
   "description": "An ecommerce website",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js -L",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "AkashKumarYadav",
   "license": "ISC",
   "dependencies": {
+    "braintree": "^3.1.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
