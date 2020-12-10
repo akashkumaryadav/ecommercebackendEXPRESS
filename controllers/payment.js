@@ -30,6 +30,12 @@ exports.processPayment = (req, res) => {
         submitForSettlement: true,
       },
     },
-    (err, result) => {}
+    (err, result) => {
+      if (err) {
+        return res.status(500).send(err)
+      } else {
+        return res.status(200).send(result)
+      }
+    }
   )
 }
