@@ -51,7 +51,8 @@ exports.getUserById = (req, res, next, id) => {
 
 exports.pushOrderInPurchaseList = (req, res, next) => {
   let purchases = []
-  req.body.order.purchases.map((product) => {
+  console.log(req.body.order)
+  req.body.order.products.map((product) => {
     purchases.push({
       _id: product._id,
       name: product.name,
