@@ -33,13 +33,15 @@ exports.signup = (req, res) => {
   // creting the user from the req body
   const user = new User(req.body)
   // saving the user in database
-  user.save((err, user) => {
-    if (err) {
+  user.save((errors, user) => {
+    if (errors) {
       // if somthing happens logging the database error
-      console.log(err)
+      console.log(errors)
       // notifying the user that somthing went wrong while creating the user
       return res.status(400).json({
-        err: 'Unable to create user make sure correct data is provided',
+        errors: [
+          'Unable to create user make sure correct data is provided or May be user already exist',
+        ],
       })
     }
     // if everything goes fine returning the created user
@@ -66,11 +68,13 @@ exports.signin = (req, res) => {
   }
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
-      return res.status(401).json({ error: 'user does not exist' })
+      return res.status(401).json({ errors: ['user does not exist'] })
     }
     // checking for authenticity of the user
     if (!user.authenticate(password)) {
-      return res.status(401).json({ error: 'Email or password does not match' })
+      return res
+        .status(401)
+        .json({ errors: ['Email or password does not match'] })
     }
 
     // generating auth_token for the user

@@ -19,7 +19,7 @@ connect()
 // * GLOBALS
 const APP = express()
 const PORT = process.env.PORT || 8000
-
+APP.set('view engine', 'ejs')
 // * middlewares for all requests
 APP.use(cookieParser())
 APP.use(cors())
@@ -34,8 +34,10 @@ APP.use('/api', orderRoutes)
 APP.use('/api', paymentRoute)
 // * Routes
 APP.get('/', (req, res) => {
-  return res.json({
-    message: 'server is running successfully and this is a test route',
+  return res.render('pages/home', {
+    documentation: {
+      url: 'https://documenter.getpostman.com/view/9198714/TW6wJUEG',
+    },
   })
 })
 
